@@ -1,5 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 
+#include <X11/XF86keysym.h>
+
 #define TERMINAL "alacritty"
 
 /* appearance */
@@ -7,7 +9,7 @@ static const unsigned int borderpx  = 3;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "xos4 Terminus:pixelsize=22:antialias=true:autohint=true" };
+static const char *fonts[]          = { "xos4 Terminus:pixelsize=23:antialias=true:autohint=true" };
 static const char dmenufont[]       = "xos4 Terminus:pixelsize=23:antialias=true:autohint=true";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
@@ -29,7 +31,8 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Firefox",  NULL,       NULL,       1 << 1,       0,           -1 },
+	{ "firefox",  NULL,       NULL,       1 << 1,       0,           -1 },
+	{ "Discord",  NULL,       NULL,       1 << 2,       0,           -1 },
 };
 
 /* layout(s) */
@@ -60,10 +63,49 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { TERMINAL, NULL };
+static const char *monitor[]  = { "monitor", NULL };
+static const char *power[]  = { "power", NULL };
+static const char *brightnessup[] = { "backlight", "-inc", "2", NULL };
+static const char *brightnessdown[] = { "backlight", "-dec", "2", NULL };
+static const char *volumeup[] = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "+5%", NULL };
+static const char *volumedown[] = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "-5%", NULL };
+static const char *audiomute[] = { "pactl", "set-sink-mute", "@DEFAULT_SINK@", "toggle", NULL };
+static const char *micmute[] = { "pactl", "set-source-mute", "@DEFAULT_SOURCE@", "toggle", NULL };
+static const char *fullscreenshot[] = { "fullscreenshot", NULL };
+static const char *windowscreenshot[] = { "windowscreenshot", NULL };
+static const char *firefox[] = { "firefox", NULL };
+static const char *thunar[] = { "thunar", NULL };
+static const char *nnn[] = { "nnn_launch", NULL };
+static const char *killx[] = { "killall", "xinit", NULL };
+static const char *htop[] = { TERMINAL, "-e", "htop", NULL };
+static const char *nmtui[] = { TERMINAL, "-e", "connect", NULL };
+static const char *spotify[] = { "spotify", NULL };
+static const char *music_next[] = { "playerctl", "next", NULL };
+static const char *music_previous[] = { "playerctl", "previous", NULL };
+static const char *music_toggle[] = { "playerctl", "play-pause", NULL };
+static const char *pulsemixer[] = { TERMINAL, "-e", "pulsemixer", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
+        { 0, XK_Print, spawn, {.v = fullscreenshot } },
+        { ShiftMask, XK_Print, spawn, {.v = windowscreenshot } },
+        { 0, XF86XK_AudioMute, spawn, {.v = audiomute } },
+        { 0, XF86XK_AudioMicMute, spawn, {.v = micmute } },
+        { 0, XF86XK_AudioRaiseVolume, spawn, {.v = volumeup } },
+        { 0, XF86XK_AudioLowerVolume, spawn, {.v = volumedown } },
+        { 0, XF86XK_MonBrightnessUp, spawn, {.v = brightnessup } },
+        { 0, XF86XK_MonBrightnessDown, spawn, {.v = brightnessdown } },
+	{ MODKEY,                       XK_p,      spawn,          {.v = monitor } },
+	{ MODKEY,                       XK_c,      spawn,          {.v = power } },
+	{ MODKEY,                       XK_n,      spawn,          {.v = firefox } },
+	{ MODKEY,                       XK_e,      spawn,          {.v = nnn } },
+	{ MODKEY,                       XK_w,      spawn,          {.v = nmtui } },
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
+	{ MODKEY,                       XK_o,      spawn,          SHCMD("open") },
+	{ MODKEY,                       XK_s,      spawn,          {.v = spotify } },
+	{ MODKEY|ShiftMask,             XK_n,      spawn,          {.v = music_next } },
+	{ MODKEY|ShiftMask,             XK_p,      spawn,          {.v = music_previous } },
+	{ MODKEY|ShiftMask,             XK_t,      spawn,          {.v = music_toggle } },
 	{ MODKEY,             		XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
@@ -98,7 +140,8 @@ static Key keys[] = {
 	TAGKEYS(                        XK_egrave,                 6)
 	TAGKEYS(                        XK_underscore,             7)
 	TAGKEYS(                        XK_ccedilla,               8)
-	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+	{ MODKEY|ShiftMask,             XK_q,      spawn,          {.v = killx } },
+	{ MODKEY|ShiftMask,             XK_r,      quit,           {0} },
 };
 
 /* button definitions */
