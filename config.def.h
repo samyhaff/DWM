@@ -81,7 +81,7 @@ static const char *thunar[] = { "thunar", NULL };
 static const char *nnn[] = { "nnn_launch", NULL };
 static const char *killx[] = { "killall", "xinit", NULL };
 static const char *htop[] = { TERMINAL, "-e", "htop", NULL };
-static const char *nmtui[] = { TERMINAL, "-e", "connect", NULL };
+static const char *nmtui[] = { TERMINAL, "-e", "nmtui", NULL };
 static const char *spotify[] = { "spotify", NULL };
 static const char *music_next[] = { "playerctl", "next", NULL };
 static const char *music_previous[] = { "playerctl", "previous", NULL };
@@ -132,9 +132,9 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_x,      xrdb,           {.v = NULL } },
-	{ MODKEY,                       XK_minus,  setgaps,        {.i = -1 } },
-	{ MODKEY,                       XK_equal,  setgaps,        {.i = +1 } },
-	{ MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = 0  } },
+	// { MODKEY,                       XK_minus,  setgaps,        {.i = -1 } },
+	// { MODKEY,                       XK_equal,  setgaps,        {.i = +1 } },
+	// { MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = 0  } },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
