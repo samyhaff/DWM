@@ -83,6 +83,7 @@ static const char *killx[] = { "killall", "xinit", NULL };
 static const char *htop[] = { TERMINAL, "-e", "htop", NULL };
 static const char *nmtui[] = { TERMINAL, "-e", "nmtui", NULL };
 static const char *spotify[] = { "spotify", NULL };
+static const char *discord[] = { "discord", NULL };
 static const char *music_next[] = { "playerctl", "next", NULL };
 static const char *music_previous[] = { "playerctl", "previous", NULL };
 static const char *music_toggle[] = { "playerctl", "play-pause", NULL };
@@ -106,6 +107,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_o,      spawn,          SHCMD("open") },
 	{ MODKEY,                       XK_s,      spawn,          {.v = spotify } },
+	{ MODKEY,                       XK_z,      spawn,          {.v = discord } },
 	{ MODKEY|ShiftMask,             XK_n,      spawn,          {.v = music_next } },
 	{ MODKEY|ShiftMask,             XK_p,      spawn,          {.v = music_previous } },
 	{ MODKEY|ShiftMask,             XK_t,      spawn,          {.v = music_toggle } },
