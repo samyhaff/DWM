@@ -89,7 +89,7 @@ static const char *music_previous[] = { "playerctl", "previous", NULL };
 static const char *music_toggle[] = { "playerctl", "play-pause", NULL };
 static const char *pulsemixer[] = { TERMINAL, "-e", "pulsemixer", NULL };
 
-static Key keys[] = {
+static const Key keys[] = {
 	/* modifier                     key        function        argument */
         { 0, XK_Print, spawn, {.v = fullscreenshot } },
         { ShiftMask, XK_Print, spawn, {.v = windowscreenshot } },
@@ -155,7 +155,7 @@ static Key keys[] = {
 
 /* button definitions */
 /* click can be ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle, ClkClientWin, or ClkRootWin */
-static Button buttons[] = {
+static const Button buttons[] = {
 	/* click                event mask      button          function        argument */
 	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
 	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
