@@ -18,6 +18,40 @@ static char normfgcolor[]           = "#bbbbbb";
 static char selfgcolor[]            = "#eeeeee";
 static char selbordercolor[]        = "#005577";
 static char selbgcolor[]            = "#005577";
+static char termcol0[] = "#000000"; /* black   */
+static char termcol1[] = "#ff0000"; /* red     */
+static char termcol2[] = "#33ff00"; /* green   */
+static char termcol3[] = "#ff0099"; /* yellow  */
+static char termcol4[] = "#0066ff"; /* blue    */
+static char termcol5[] = "#cc00ff"; /* magenta */
+static char termcol6[] = "#00ffff"; /* cyan    */
+static char termcol7[] = "#d0d0d0"; /* white   */
+static char termcol8[]  = "#808080"; /* black   */
+static char termcol9[]  = "#ff0000"; /* red     */
+static char termcol10[] = "#33ff00"; /* green   */
+static char termcol11[] = "#ff0099"; /* yellow  */
+static char termcol12[] = "#0066ff"; /* blue    */
+static char termcol13[] = "#cc00ff"; /* magenta */
+static char termcol14[] = "#00ffff"; /* cyan    */
+static char termcol15[] = "#ffffff"; /* white   */
+static char *termcolor[] = {
+  termcol0,
+  termcol1,
+  termcol2,
+  termcol3,
+  termcol4,
+  termcol5,
+  termcol6,
+  termcol7,
+  termcol8,
+  termcol9,
+  termcol10,
+  termcol11,
+  termcol12,
+  termcol13,
+  termcol14,
+  termcol15,
+};
 static char *colors[][3] = {
        /*               fg           bg           border   */
        [SchemeNorm] = { normfgcolor, normbgcolor, normbordercolor },
@@ -63,6 +97,7 @@ static const Layout layouts[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
+<<<<<<< HEAD
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbordercolor, "-sf", selfgcolor, NULL };
 static const char *termcmd[]  = { TERMINAL, NULL };
@@ -88,6 +123,15 @@ static const char *music_next[] = { "playerctl", "next", NULL };
 static const char *music_previous[] = { "playerctl", "previous", NULL };
 static const char *music_toggle[] = { "playerctl", "play-pause", NULL };
 static const char *pulsemixer[] = { TERMINAL, "-e", "pulsemixer", NULL };
+=======
+<<<<<<< HEAD
+static const char *dmenucmd[] = { "dmenu_run", "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
+=======
+static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbordercolor, "-sf", selfgcolor, NULL };
+>>>>>>> xrdb
+static const char *termcmd[]  = { "st", NULL };
+>>>>>>> status2d-xrdb
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
