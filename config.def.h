@@ -140,6 +140,7 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_w,      spawn,          {.v = nmtui } },
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_o,      spawn,          SHCMD("open") },
+	{ MODKEY,                       XK_a,      spawn,          SHCMD("bookmarks") },
 	{ MODKEY,                       XK_s,      spawn,          {.v = spotify } },
 	{ MODKEY,                       XK_z,      spawn,          {.v = discord } },
 	{ MODKEY|ShiftMask,             XK_n,      spawn,          {.v = music_next } },
